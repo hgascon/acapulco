@@ -5,9 +5,4 @@ Automated Attack Community Graph Construction
 
 Project Code Name: Acapulco (Attack Community grAPh COnstruction)
 
-The goal of this project is to implement a Splunk application that can be deployed
-on a central server to automatically generate community attack graphs from a set of
-honeypot sources distributed across networks. An attack graph is a collection of scenarios
-showing how a malicious agent can compromise the integrity of a target system.
-When built from a wide range of sensors, it can provide a comprehensive view of attackers 
-behavior at a large scale.
+The goal of this project is to implement a Splunk application that can be deployed on a central server to automatically generate community attack graphs from a set of honeypot sources distributed across networks. An attack graph is a collection of scenarios showing how a malicious agent can compromise the integrity of a target system. When built from a wide range of sensors, it can provide a comprehensive view of attackers behavior at a large scale.
