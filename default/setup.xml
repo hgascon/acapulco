@@ -1,0 +1,73 @@
+<setup>
+	<block title="Configure HPfeeds for Acapulco @ The Honeynet Project.">
+		<text>
+			Acapulco Splunk app allows you to plot clustered parallel coordinates graphs with the indexed data received from HPfeeds channels at the Honeynet Project.                
+                </text>
+	</block>
+        <block title="HPfeeds Broker Settings" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+		<text>
+			You need to enter the hostname (or IP address) and port for the HPfeeds broker you want to use.
+		</text>
+		<input field="broker_host">
+			<label>Hostname</label>
+			<type>text</type>
+		</input>
+	</block>
+        <block title="" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+		<input field="broker_port">
+			<label>Port</label>
+			<type>text</type>
+		</input>
+	</block>
+        <block title="Your HPfeeds Authkey (required for channel subscription)" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+		<text>
+			You need to enter your authkey information before trying to subscribe to an HPfeeds channel.
+                        Warning: Your authkey must have "subscribe" permission for all the channels you'll want to index in Splunk.
+                        
+                        If you don't have an authkey yet. You must create one on the broker you'll want to use.
+		</text>
+		<input field="authkey_id">
+			<label>Authkey ID</label>
+			<type>text</type>
+		</input>
+	</block>
+	<block title="" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+		<input field="authkey_secret">
+			<label>Authkey Secret</label>
+			<type>text</type>
+		</input>
+	</block>
+        <block title="HPfeeds Channel Subscriptions" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+		<text>
+			Enter the channels you want to subscribe to.
+                        This parameter must be a comma-separated list of channel names.
+                        e.g: channel1,channel2,channel3,...
+                        
+                        WARNING: for each HPfeeds channel subscribed a new Splunk index is created. Thus, when
+                        subscribing for the first time to a new channel, you MUST restart Splunk to activate the
+                        newly created index.
+		</text>
+		<input field="channel_list">
+			<label>Channel List</label>
+			<type>text</type>
+		</input>
+	</block>
+        <block title="Log files Path" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+		<text>
+			Enter the path for log files.
+                        All the data received for a given HPfeeds channel is stored in a dedicated file.
+                        This file is then monitored by Splunk.
+                        Warning: the path must exist and must be writable.
+                        
+		</text>
+		<input field="logfilepath">
+			<label>Log Files Path</label>
+			<type>text</type>
+		</input>
+	</block>
+        <block title="Warning">
+		<text>Please be patient and wait for this form to complete before navigating away from this page.
+                
+                </text>
+	</block>
+</setup>
