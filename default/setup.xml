@@ -1,10 +1,10 @@
 <setup>
-	<block title="Configure HPfeeds for Acapulco @ The Honeynet Project.">
+	<block title="HPfeeds Configuration">
 		<text>
-			Acapulco Splunk app allows you to plot clustered parallel coordinates graphs with the indexed data received from HPfeeds channels at the Honeynet Project.                
-                </text>
+            This appplication is designed to create clustered parallel coordinates graphs with data received from HPfeeds channels. HPfeeds is a centralized transport protocol for security events from the Honeynet Project sensor network. In order to retreive data from the HPfeeds system, you need to introduce all the following configuration parameters.
+         </text>
 	</block>
-        <block title="HPfeeds Broker Settings" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+        <block title="HPfeeds Broker Settings" endpoint="admin/hpfeeds/" entity="hpfeeds_settings">
 		<text>
 			You need to enter the hostname (or IP address) and port for the HPfeeds broker you want to use.
 		</text>
@@ -13,13 +13,13 @@
 			<type>text</type>
 		</input>
 	</block>
-        <block title="" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+        <block title="" endpoint="admin/hpfeeds/" entity="hpfeeds_settings">
 		<input field="broker_port">
 			<label>Port</label>
 			<type>text</type>
 		</input>
 	</block>
-        <block title="Your HPfeeds Authkey (required for channel subscription)" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+        <block title="Your HPfeeds Authkey (required for channel subscription)" endpoint="admin/hpfeeds/" entity="hpfeeds_settings">
 		<text>
 			You need to enter your authkey information before trying to subscribe to an HPfeeds channel.
                         Warning: Your authkey must have "subscribe" permission for all the channels you'll want to index in Splunk.
@@ -31,13 +31,13 @@
 			<type>text</type>
 		</input>
 	</block>
-	<block title="" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+	<block title="" endpoint="admin/hpfeeds/" entity="hpfeeds_settings">
 		<input field="authkey_secret">
 			<label>Authkey Secret</label>
 			<type>text</type>
 		</input>
 	</block>
-        <block title="HPfeeds Channel Subscriptions" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+        <block title="HPfeeds Channel Subscriptions" endpoint="admin/hpfeeds/" entity="hpfeeds_settings">
 		<text>
 			Enter the channels you want to subscribe to.
                         This parameter must be a comma-separated list of channel names.
@@ -52,7 +52,7 @@
 			<type>text</type>
 		</input>
 	</block>
-        <block title="Log files Path" endpoint="admin/hpfeedsapp/" entity="hpfeeds_settings">
+        <block title="Log files Path" endpoint="admin/hpfeeds/" entity="hpfeeds_settings">
 		<text>
 			Enter the path for log files.
                         All the data received for a given HPfeeds channel is stored in a dedicated file.
