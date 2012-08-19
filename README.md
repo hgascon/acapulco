@@ -26,7 +26,19 @@ You can get the Acapulco Splunk app and the client by dowloading from GitHub, or
 
 > git clone https://github.com/hgascon/Acapulco4HNP.git
 
-### Usage
+### Dependencies
+
+In order to run all the elements, you'll need to install:
+
+1. A running Splunk server with it REST API available at the default 8089 port.
+2. The Splunk JavaScript SDK [http://dev.splunk.com/view/javascript-sdk/SP-CAAAECM]
+3. node.js [http://nodejs.org/]
+4. Scikit-learn [http://scikit-learn.org]
+5. Scipy [http://www.scipy.org/]
+6. Numpy [http://numpy.scipy.org/]
+
+
+## Usage
 
 
 ### The Splunk App
@@ -37,31 +49,31 @@ The Acapulco Splunk app is based on the HPfeeds4Splunk add-on by Frank Guenichot
 
 The cluster runner script can be run periodically from the command line:
 
-Usage: runner.py [options] <log dir>
+	Usage: runner.py [options] <log dir
 
-> Options:  
->   -h, --help            show this help message and exit  
->   -o OUTPUT_TYPE, --output=OUTPUT_TYPE  
->                         Output type: csv or json (default csv)  
->   -d OUTPUT_DIR, --outdir=OUTPUT_DIR  
->                         Output directory (default log dir)  
-> Usage: runner.py [options] <log dir>  
+	Options:  
+	-h, --help            show this help message and exit  
+	-o OUTPUT_TYPE, --output=OUTPUT_TYPE  
+	                     Output type: csv or json (default csv)  
+	-d OUTPUT_DIR, --outdir=OUTPUT_DIR  
+	                     Output directory (default log dir)  
+	Usage: runner.py [options] <log dir  
 
 Once you run it, you can expect and output similar to this:
 
-> python runner.py <your splunk logging dir>
+	 $> python runner.py <your splunk logging dir>
 
-> [*] Processing dionaea.capture.anon.log...  
-> [*] Processing dionaea.capture.log...   
-> [*] Processing dionaea.dcerpcrequests.log...  
-> [*] Processing thug.files.log...  
-> [*] Writing output...  
-> [*] Clustering saddr...  
-> [*] Clustering sport...  
-> [*] Clustering dport...  
-> [*] Clustering daddr...  
-> [*] Clustering url...  
-> [*] Writing output...  
+	 [*] Processing dionaea.capture.anon.log...  
+	 [*] Processing dionaea.capture.log...   
+	 [*] Processing dionaea.dcerpcrequests.log...  
+	 [*] Processing thug.files.log...  
+	 [*] Writing output...  
+	 [*] Clustering saddr...  
+	 [*] Clustering sport...  
+	 [*] Clustering dport...  
+	 [*] Clustering daddr...  
+	 [*] Clustering url...  
+	 [*] Writing output...  
 
 Files "acapulco.log" and "acapulco_plain.log" will be created in the Splunk logging directory. You can add the following line to your crontab to run the script every day and have the data updated for new events.
 
@@ -75,23 +87,12 @@ The first think you need to do is log in the Splunk server with your user and pa
 
 If clustered data is selected and retrieved, the controls buttons allow to show the density of the different clusters.
 
-### Dependencies
 
-In order to run all the elements, you'll need to install:
+## Support
 
-1. A running Splunk server with it REST API available at the default 8089 port.
-2. The Splunk JavaScript SDK [http://dev.splunk.com/view/javascript-sdk/SP-CAAAECM]
-3. node.js [http://nodejs.org/]
-4. Scikit-learn [http://scikit-learn.org]
-5. Scipy [http://www.scipy.org/]
-6. Numpy [http://numpy.scipy.org/]
+This first release has been supported by the Google Summer of Code 2012 program and mentored by The Honeynet Project.
 
-
-### Support
-
-* This first release has been supported by the Google Summer of Code 2012 program and mentored by The Honeynet Project.
-
-### Contact
+## Contact
 
 You can reach the main developer at hgascon@gmail.com.
 
