@@ -22,7 +22,7 @@ You will be able to access the client at http://localhost:6969/index.html
 
 ### Get Acapulco 
 
-You can get the Acapulco Splunk app and the client by [downloading it][zip] from GitHub, or by cloning it:
+You can get the Acapulco Splunk app and the client by dowloading from GitHub, or by cloning it:
 
 > git clone https://github.com/hgascon/Acapulco4HNP.git
 
