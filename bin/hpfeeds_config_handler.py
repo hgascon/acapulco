@@ -1,8 +1,7 @@
+# The Honeynet Project
+# Acapulco (Attack Community grAPh COnstruction) / hpfeeds config handler
+# Hugo Gascon (hgascon@gmail.com)
 #
-# Acapulco for The Honeynet Project
-# 
-#
-# hpfeeds_config_handler.py
 # Based on Splunk for HPfeeds by Franck GUENICHOT
 # This python scripts handles the parameters in the configurationp page for hpfeeds.
 # It allows to modify hpfeeds.conf and makes basic parameter's validity checks.

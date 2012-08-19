@@ -1,8 +1,11 @@
 #!/bin/sh
-
-# Acapulco for the Honeynet Project 
-# launcher script
-# 
+#
+# The Honeynet Project
+# Acapulco (Attack Community grAPh COnstruction) / Launcher Script
+# Hugo Gascon (hgascon@gmail.com)
+#
+# Based on Splunk for HPfeeds by Franck GUENICHOT
+ 
 
 SPLUNK_HOME=/Applications/splunk
 APP_BIN_DIR=$SPLUNK_HOME/etc/apps/Acapulco4HNP/bin

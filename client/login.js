@@ -1,3 +1,16 @@
+/***************************************************************
+  The Honeynet Project
+  Acapulco (Attack Community grAPh COnstruction)
+  Login and Data Retrieving Script
+  Hugo Gascon (hgascon@gmail.com)
+
+  This login script uses the Splunk JavaScript SDK to log in
+  the user in the Splunk server. It gets some query parameters
+  from the html interface and retrieves the specified data from
+  the server to be processed and displayed.
+
+***************************************************************/
+
 $.fn.pVal = function() {
         return this.hasClass('placeholder') ? '' : this.val();
 };
@@ -47,7 +60,12 @@ $(function() {
   });
 });
 
-
+/*
+Create a new splunk javascript object to log
+the user in the Splunk server. If the login process
+is correct, display info messages and the button to
+retrieve data from the Splunk instance.
+*/
 function login(){
 	service = new splunkjs.Service(http, { 
 		scheme: scheme,
@@ -75,6 +93,12 @@ function login(){
  })
 };
 
+/*
+This functions verifies the type of data requested,
+read the input parameters and creates a new query to
+the Splunk server. If the data is corrrectly received
+it passed to the corresponding parser to be processed.
+*/
 function getData(){
     $("#zero-data").css("display", "none");
     $("#ok-login").css("display", "none");

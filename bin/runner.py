@@ -50,11 +50,12 @@ def run(log_dir,o_type,o_dir):
         to this script.
         o_type: the type of output that this will produce in order
         to be read and indexed by Splunk: JSON or CSV.
-	    o_type: the output directory where the new file including
+        o_dir: the output directory where the new file including
         all meta-events and their clustered version will be stored.
+        By default, it is the same as the log_dir.
 
     Returns:
-    	0 if files are created correctly after clustering of meta-events.
+        0 if files are created correctly after clustering of meta-events.
 
     """
 
@@ -125,10 +126,20 @@ def run(log_dir,o_type,o_dir):
 
 
 def save(events,o_dir,o_type,fname):
-	"""
-	"""
+    """ Save in disc the new files containing all meta-events
+    and their clustered version.
 
-	#Save pickle objects for debbuging.
+    Args:
+        events: a list of meta-events (dictionaries).
+        o_type: the type of output that this will produce in order
+        to be read and indexed by Splunk: JSON or CSV.
+        o_dir: the output directory where the new file including
+        all meta-events and their clustered version will be stored.
+        By default, it is the same as the log_dir.
+        fname: name of the output file
+    """
+
+    #Save pickle objects for debbuging.
     #f = open(os.path.join(o_dir, fname+".pickle"),"wb")
     #pickle.dump(events,f)
     #f.close()
@@ -147,23 +158,23 @@ def save(events,o_dir,o_type,fname):
 
 
 def cluster_events(events_cls,keys=KEYS_2_CLS,n_clusters=NUM_CLUSTERS):
-	""" Read the list of meta-events, the keys to be clustered and
-	the number of clusters for the k-means algorithm. Calls encoding
-	functions for different features in each meta-event and create
-	a new list of meta-events where feature values are cluster-label
-	encoded.
+    """ Read the list of meta-events, the keys to be clustered and
+    the number of clusters for the k-means algorithm. Calls encoding
+    functions for different features in each meta-event and create
+    a new list of meta-events where feature values are cluster-label
+    encoded.
 
-	Args:
-		events_cls: a list of meta-events (dictinaries).
-		keys: features to be clustered in each meta-event.
-		n_clusters: list of numbers of clusters to use for each features
-		when k-means algorithm is used.
+    Args:
+        events_cls: a list of meta-events (dictionaries).
+        keys: features to be clustered in each meta-event.
+        n_clusters: list of numbers of clusters to use for each features
+        when k-means algorithm is used.
 
-	Returns:
-		A list of meta-events (dictionaries) where the values of the
-		different features are clustered and the new value is the label
-		of the assigned cluster.
-	"""
+    Returns:
+        A list of meta-events (dictionaries) where the values of the
+        different features are clustered and the new value is the label
+        of the assigned cluster.
+    """
 
     #cluster only parameters in KEYS_CLS in all events
     num_cls_d = dict(zip(keys,n_clusters))
@@ -189,16 +200,16 @@ def cluster_events(events_cls,keys=KEYS_2_CLS,n_clusters=NUM_CLUSTERS):
     return events_cls
   
 def dionaea_capture(file):
-	""" Read a dionaea_capture hpfeeds log file
-	and create a list of meta-events according to a previous
-	extraction definition.
+    """ Read a dionaea_capture hpfeeds log file
+    and create a list of meta-events according to a previous
+    extraction definition.
 
-	Args:
-		file: file descriptor of a hpfeed log file.
+    Args:
+        file: file descriptor of a hpfeed log file.
 
-	Returns:
-		A list of meta-events (dictionaries).
-	"""
+    Returns:
+        A list of meta-events (dictionaries).
+    """
     data = file.read()
     dict_list = []
     r = "^(.*) PUBLISH chan=(.*), identifier=(.*), url=(.*), daddr=(.*), saddr=(.*), dport=(.*), sport=(.*), sha512=(.*), md5=(.*)"
@@ -215,16 +226,16 @@ def dionaea_capture(file):
     return dict_list
 
 def dionaea_dcerpcrequests(file):
-	""" Read a dionaea_dcerpcrequests hpfeeds log file
-	and create a list of meta-events according to a previous
-	extraction definition.
+    """ Read a dionaea_dcerpcrequests hpfeeds log file
+    and create a list of meta-events according to a previous
+    extraction definition.
 
-	Args:
-		file: file descriptor of a hpfeed log file.
+    Args:
+        file: file descriptor of a hpfeed log file.
 
-	Returns:
-		A list of meta-events (dictionaries).
-	"""	
+    Returns:
+        A list of meta-events (dictionaries).
+    """ 
     data = file.read()
     dict_list = []
     r = "^(.*) PUBLISH chan=(.*), identifier=(.*), uuid=(.*), daddr=(.*), opnum=(.*), saddr=(.*), dport=(.*), sport=(.*)"
@@ -239,16 +250,16 @@ def dionaea_dcerpcrequests(file):
     return dict_list
 
 def dionaea_capture_anon(file):
-	""" Read a dionaea_capture_anon hpfeeds log file
-	and create a list of meta-events according to a previous
-	extraction definition.
+    """ Read a dionaea_capture_anon hpfeeds log file
+    and create a list of meta-events according to a previous
+    extraction definition.
 
-	Args:
-		file: file descriptor of a hpfeed log file.
+    Args:
+        file: file descriptor of a hpfeed log file.
 
-	Returns:
-		A list of meta-events (dictionaries).
-	"""	
+    Returns:
+        A list of meta-events (dictionaries).
+    """ 
     data = file.read()
     dict_list = []
     r = "^(.*) PUBLISH chan=(.*), identifier=(.*), script=(.*), type=(.*), id=(.*) server=(.*)"
@@ -263,17 +274,17 @@ def dionaea_capture_anon(file):
     return dict_list
 
 def thug_files(file):
- 	""" Read a thug_files hpfeeds log file
-	and create a list of meta-events according to a previous
-	extraction definition.
+    """ Read a thug_files hpfeeds log file
+    and create a list of meta-events according to a previous
+    extraction definition.
 
-	Args:
-		file: file descriptor of a hpfeed log file.
+    Args:
+        file: file descriptor of a hpfeed log file.
 
-	Returns:
-		A list of meta-events (dictionaries).
-	"""	
-   data = file.read()
+    Returns:
+        A list of meta-events (dictionaries).
+    """ 
+    data = file.read()
     dict_list = []
     r = "^(.*) PUBLISH chan=(.*), identifier=(.*), url=(.*), type=(.*), sha1=(.*), data=(.*), md5=(.*)"
     events = []

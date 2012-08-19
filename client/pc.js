@@ -1,3 +1,17 @@
+/***************************************************************
+  The Honeynet Project
+  Acapulco (Attack Community grAPh COnstruction)
+  D3.js and Parallel Coordinates Clustering Display
+  Hugo Gascon (hgascon@gmail.com)
+
+  This script uses the D3.js javascript-based graphic library
+  to build a parallel coordinate graph from hpfeeds meta-events
+  retrieved from Splunk. The different parameters of events and
+  the size of the clusters found by k-means or DBSCAN algorithms
+  is displayed withing the graph, creating a new concept of
+  parallel coordinates visualization.
+  
+***************************************************************/
 
 d3.select("#show-clusters").on("click", showClusters);
 d3.select("#hide-clusters").on("click", hideClusters);
@@ -6,9 +20,24 @@ d3.select("#show-ticks").on("click", showTicks);
 d3.select("#hide-brush").on("click", hideBrush);
 d3.select("#show-brush").on("click", showBrush);
 
+/*
+Cluster density visualization is available when clustered
+data has been retrieved from Splunk. clusterDensity indicated
+the type of data retrieved and is also the object containing
+the size of every cluster.
+
+The structure of "clusterDensity" is:
+	{coordinate_1: {cluster_label_1: size, ... , cluster_label_n: size}
+	...
+	coordinate_n: {cluster_label_1: size, ... , cluster_label_n: size}}
+*/
 var clusterDensity = 0;
 var events;
 
+/*
+The following functions are handlers for CONTROL
+buttons displayed in the web client.
+*/
 function showClusters() {
   if (d3.selectAll("circle")[0].length == 0){
     if (clusterDensity == 0){
@@ -90,6 +119,8 @@ function color(d,a) {
   return ["hsla(",c[0],",",c[1],"%,",c[2],"%,",a,")"].join("");
 };
 
+//reboot function for cleaning the display when
+//new data is retrieved.
 function clean(){
    y = {}
    dragging = {}
@@ -102,13 +133,8 @@ function clean(){
 
 }
 
-// var svg = d3.select("body").append("svg:svg")
-  // svg = d3.select("svg")
-  //   .attr("width", w + m[1] + m[3])
-  //   .attr("height", h + m[0] + m[2])
-  // .append("svg:g")
-  //   .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
-
+//Build an adequate JSON object from the data received from
+//Splunk and calls the drawing functions.
 function parse(results,mode){
     events = results;
     var rows = results.rows.slice();
@@ -133,9 +159,9 @@ function parse(results,mode){
     clusterDensity=mode;
 };
 
-
-//TODO 
-
+//Build histograms of the different clusters when
+//clustered data is requested. The resulting object
+//is stored in the clusterDensity variable.
 function readClustersDensity(data){
 
   var ks = Object.keys(data[0]);
@@ -158,9 +184,19 @@ function readClustersDensity(data){
   return cld;
 };
 
+/*
+Select every axis point displayed in the clustered data
+graph (clusters), read the cluster label and add a circle
+object with the corresponding size stored in the clusterDensity
+object.
 
+The max size of a cluster bubble is always 115 if it
+has ALL the elements of a query. The amount of events retrieved
+in a query is variable through the slider selector.
+
+The sizes of the clusters bubbles are displayed linearly.
+*/
 function drawClusters(){
-
   var a = d3.selectAll(".axis")[0];
   for(i=0;i<a.length;i++){
     var axis = d3.select(a[i]);
@@ -192,7 +228,8 @@ function drawClusters(){
   }
 };
 
-
+//formats correctly the axis domain when only one
+//cluster is created for a dimension.
 function getDomain(data,d){
   var limits = d3.extent(data, function(p){
     return +p[d];
@@ -204,25 +241,18 @@ function getDomain(data,d){
   return limits;
 }
 
+//d3.js parallel coordinate building function.
+//based on mbostock PC examples.
 function draw(data){
   clean();
   console.log("drawing data!");
-  // x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
-  //   return (y[d] = d3.scale.linear()
-  //       .domain(d3.extent(data, function(p) {
-  //         return +p[d];
-  //       }))
-  //       .range([h, 0])
-  //       );
-  // }));
-
+  
   x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
     return (y[d] = d3.scale.linear()
         .domain(getDomain(data,d))
         .range([h, 0])
         );
   }));
-
 
   // Add grey background lines for context.
   background = svg.append("svg:g")

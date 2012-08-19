@@ -1,6 +1,9 @@
-# Acapulco for The Honeynet Project
-# worker hpfeeds script
-# 
+# The Honeynet Project
+# Acapulco (Attack Community grAPh COnstruction) / worker hpfeeds script
+# Hugo Gascon (hgascon@gmail.com)
+#
+# Based on Splunk for HPfeeds by Franck GUENICHOT
+
 
 import os
 import sys

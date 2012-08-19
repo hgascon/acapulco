@@ -1,4 +1,3 @@
-
 function slider (a_init, a_tpl) {
 
 	this.f_setValue  = f_sliderSetValue;
