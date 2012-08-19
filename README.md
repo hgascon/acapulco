@@ -39,29 +39,29 @@ The cluster runner script can be run periodically from the command line:
 
 Usage: runner.py [options] <log dir>
 
-> Options:\n
->   -h, --help            show this help message and exit\n
->   -o OUTPUT_TYPE, --output=OUTPUT_TYPE\n
->                         Output type: csv or json (default csv)\n
->   -d OUTPUT_DIR, --outdir=OUTPUT_DIR\n
->                         Output directory (default log dir)\n
-> Usage: runner.py [options] <log dir>\n
+> Options:  
+>   -h, --help            show this help message and exit  
+>   -o OUTPUT_TYPE, --output=OUTPUT_TYPE  
+>                         Output type: csv or json (default csv)  
+>   -d OUTPUT_DIR, --outdir=OUTPUT_DIR  
+>                         Output directory (default log dir)  
+> Usage: runner.py [options] <log dir>  
 
 Once you run it, you can expect and output similar to this:
 
 > python runner.py <your splunk logging dir>
 
-> [*] Processing dionaea.capture.anon.log...\n
-> [*] Processing dionaea.capture.log...\n 
-> [*] Processing dionaea.dcerpcrequests.log...\n
-> [*] Processing thug.files.log...\n
-> [*] Writing output...\n
-> [*] Clustering saddr...\n
-> [*] Clustering sport...\n
-> [*] Clustering dport...\n
-> [*] Clustering daddr...\n
-> [*] Clustering url...\n
-> [*] Writing output...\n
+> [*] Processing dionaea.capture.anon.log...  
+> [*] Processing dionaea.capture.log...   
+> [*] Processing dionaea.dcerpcrequests.log...  
+> [*] Processing thug.files.log...  
+> [*] Writing output...  
+> [*] Clustering saddr...  
+> [*] Clustering sport...  
+> [*] Clustering dport...  
+> [*] Clustering daddr...  
+> [*] Clustering url...  
+> [*] Writing output...  
 
 Files "acapulco.log" and "acapulco_plain.log" will be created in the Splunk logging directory. You can add the following line to your crontab to run the script every day and have the data updated for new events.
 
