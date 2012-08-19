@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dashboard>
+  <label>Clustered Data Dashboard</label>
+  <row>
+    <chart>
+      <searchName>Source Address</searchName>
+      <title>Source Address Cluster Size</title>
+      <option name="charting.chart">bar</option>
+    </chart>
+    <chart>
+      <searchName>Source Port Cluster Size</searchName>
+      <title>Source Port Cluster Size</title>
+      <option name="charting.chart">bar</option>
+    </chart>
+  </row>
+  <row>
+    <chart>
+      <searchName>dest address cluster size</searchName>
+      <title>Dest Address Cluster Size</title>
+      <option name="charting.chart">bar</option>
+    </chart>
+    <chart>
+      <searchName>dest port cluster size</searchName>
+      <title>Dest Port Cluster Size</title>
+      <option name="charting.chart">bar</option>
+    </chart>
+  </row>
+  <row>
+    <chart>
+      <searchName>url cluster size</searchName>
+      <title>URL Cluster Size</title>
+      <option name="charting.chart">bar</option>
+    </chart>
+  </row>
+</dashboard>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Acapulco for The Honeynet Project</title>
+    <meta name="description" content="">
+    <meta name="author" content="Hugo Gascon">
+
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/acapulco.min.css">
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.5.0"></script>
+    <script type="text/javascript" src="client/splunk.js"></script>
+    <script type="text/javascript" src="resources/json2.js"></script>
+    <script type="text/javascript" src="resources/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/prettify.js"></script>
+    <script type="text/javascript" src="resources/bootstrap.tabs.js"></script>
+    <script type="text/javascript" src="resources/bootstrap.dropdown.js"></script>
+    <script type="text/javascript" src="resources/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="login.js"></script>
+    <script language="JavaScript" src="slider.js"></script>
+    <link href="resources/bootstrap.css" rel="stylesheet">
+    <link href="resources/prettify.css" type="text/css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/graph.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/legend.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/detail.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/extensions.css">
+    <style type="text/css">
+
+    body {
+    }
+      
+    section {
+      padding-top: 60px;
+    }
+    
+    .page-header{
+      margin-left: 10px;
+    }
+    .row{
+      margin-left: 20px;
+      margin-right: 100px;
+      margin-bottom: 10px;
+      padding-top: 0px;  
+    }
+
+    .msg-head{
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      font-size: 12px;
+      color: gray;
+      margin-bottom: 10px;
+    }
+
+    #render {
+      margin-left: 100px;
+      float: left;
+      /*width: 30%;*/
+    }
+
+    #controls{
+      margin-right: 100px;
+      float: right;
+      /*width: 55%;*/
+
+    }
+
+    pre {
+      overflow-x: auto;
+    }
+
+    .row1{
+      margin-top: 20px;
+      position: relative;
+      border: none;
+    }
+
+    #foot{
+      width: 40%;
+      float: center;
+      margin-left: 20px;
+    }
+    
+    .secondary-nav .status{
+      display: none;
+      font-weight: bold;
+      padding: 10px 10px 11px;
+      line-height: 19px;
+    }
+
+    .render-info{
+      margin-bottom: 0px;
+    }
+    .render-info .status{
+      display: none;
+      font-weight: bold;
+      padding-top: 5px;
+      line-height: 19px;
+    }
+    
+    #acapulco-run {
+      margin-top: 0 px;
+      margin-right: 10px;
+      height: 26px;
+      padding-top: 5px;
+      font-size: 11px;
+      width: 30%;
+      float:left;
+      display: none;
+    }
+
+    .ctrl-grid{
+      margin-top: 10px;
+    }
+    .ctrl {
+      margin-top: 2px;
+      margin-right: 5px;
+      height: 26px;
+      width: 115px;
+      padding-top: 5px;
+      font-size: 11px;
+
+    }
+
+
+    #login-btn {
+      width: 100%;
+    }
+    .secondary-nav ul.dropdown-menu  {
+      padding: 10px;
+    }
+    
+    .secondary-nav .dropdown-menu li {
+      width: 100%;
+    }
+    
+    .secondary-nav .dropdown-menu li input {
+      width: 200px;
+      margin: 1px auto;
+      margin-bottom: 8px;
+    }
+
+    svg{
+      /*font: 10px sans-serif;*/
+      /*position: relative;*/
+      margin-right: 100px;
+      margin-left: auto;
+      margin-top: 0px;
+    }
+
+    #chart{
+      border: none;
+    }
+
+
+    .background path {
+      fill: none;
+      stroke: #ccc;
+      stroke-opacity: .4;
+      shape-rendering: crispEdges;
+    }
+
+    .foreground path {
+      fill: none;
+      stroke: steelblue;
+      stroke-opacity: .7;
+    }
+
+    .brush .extent {
+      fill-opacity: .3;
+      stroke: #fff;
+      shape-rendering: crispEdges;
+    }
+
+    .axis line, .axis path {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .axis text {
+      text-shadow: 0 1px 0 #fff;
+      cursor: move;
+    }
+
+    /*#selected-bar {
+      width:0%;
+      font-weight: bold;
+    }
+    #rendered-bar {
+      border-right: 1px solid rgba(120,120,120,1);
+      background: rgba(120,120,120,0.6);
+    }
+    #selected-bar {
+      border-right: 1px solid rgba(120,120,120,0.5);
+      background: rgba(120,120,120,0.4);
+    }
+    .fillbar {
+      height: 12px;
+      line-height: 12px;
+      border:1px solid rgba(120,120,120,0.5);
+    }*/
+
+    #slider{
+      margin-top: 2px;
+      margin-left: 5px;
+      width: 38px;
+      padding: 0px;
+      position: relative;
+      border: none;
+    }
+
+    .msg{
+      font-size: 11px;
+      color: gray;
+      position: relative;
+    }
+
+    form {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    </style>
+  </head>
+
+  <body>  
+  <div class="topbar">
+        <div class="fill">
+          <div class="container-fluid">
+          <a class="brand" href="index.html">Acapulco by The Honeynet Project</a>
+            <ul class="nav">
+              <li><a href="index.html">Description</a></li>
+              <li class="active"><a href="pc.html">Graph Display</a></li>
+            </ul>
+            <ul class="nav secondary-nav">
+              <li class="status" id="ok-login">Login Successful!</a>
+              <li class="status" id="ko-login">Error in Splunk login!</a>
+              <!-- <li button class="btn primary run" id="acapulco-run" onclick="getData();">Run</button> -->
+              <li class="dropdown" data-dropdown="dropdown">
+                <a href="#" class="dropdown-toggle" id="signin-dropdown">Sign In</a>
+                <ul class="dropdown-menu">
+                    <li>
+                      <input id="id_username" type="text" name="username" placeholder="username: admin"/>
+                    </li>
+                    <li>
+                      <input type="password" name="password" id="id_password" placeholder="password: changeme"/>
+                    </li>
+                    <li>
+                      <input type="text" name="scheme" id="id_scheme" placeholder="scheme: https"/>
+                    </li>
+                    <li>
+                      <input type="text" name="host" id="id_host" placeholder="host: localhost"/>
+                    </li>
+                    <li>
+                      <input type="text" name="port" id="id_port" placeholder="port: 8089"/>
+                    </li>
+                    <li>
+                      <button class="btn primary run" id="login-btn">Log In</button>
+                    </li>                    
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+<div class="container">
+      
+      <section id="acapulco">
+       <div class="page-header">
+          <h1>
+            <small>Automatic Construction of Clustered Parallel Coordinates Graph</small>
+          </h1>
+       </div>
+       <div class="row">
+          <div class="msg-head">Start by logging into your user account at the Honeycloud Splunk server. If logging is successful, a new button will appear to render the graph after selecting some options. Select the type of data that will be displayed in the graph. <strong>Plain data</strong> contains meta-events built from different <em>hpfeeds</em> channels, while <strong>clustered data</strong> will show the different clusters this data fits into. Select the number of events to retrieve from the server up to a maximum of 10000 and hit the run button.
+          Once the clustered data is displayed, the control buttons can be used to show the density of the different clusters.
+        </div>
+       <div class="third" id="render">
+        <h3>Rendering</h3>
+        <small>
+          <strong>
+          <input type="radio" name="group1" id="normal-data" checked> Plain data    <input type="radio" name="group1" id="clustered-data"> Clustered data<br>
+          </strong>
+          <!-- <p> -->
+         <form action="pc.html" method="get" name="nevents">
+          <!-- <table width="90%" border="0" bordercolor="#FFFFFF" cellspacing="5" cellpadding="10">
+            <tr>
+              <td> -->
+          <script language="JavaScript">
+            var A_TPL = {
+              'b_vertical' : false,
+              'b_watch': true,
+              'n_controlWidth': 140,
+              'n_controlHeight': 16,
+              'n_sliderWidth': 19,
+              'n_sliderHeight': 16,
+              'n_pathLeft' : 0,
+              'n_pathTop' : 0,
+              'n_pathLength' : 121,
+              's_imgControl': 'images/sldr1v_bg.gif',
+              's_imgSlider': 'images/sldr1v_sl.gif',
+              'n_zIndex': 1
+            }
+
+            var A_INIT1 = {
+              's_form' : 0,
+              's_name': 'slider',
+              'n_minValue' : 0,
+              'n_maxValue' : 10000,
+              'n_value' : 0,
+              'n_step' : 1
+            }
+            var sld = new slider(A_INIT1, A_TPL);
+          </script>
+             <!--  </td>
+                <td> -->
+                  <div class="msg">
+                  <input name="slider" id="slider" type="Text" size="3" maxlength="4" value="0"> Events to display</div>
+   <!--              </td>
+              </tr>
+        </table> -->
+          </form>
+        <!-- </p> -->
+          <!-- <strong id="data-count">10000</strong> entries, <strong id="selected-count">10000</strong> selected, <strong id="rendered-count">0</strong> rendered 
+          <p></p>
+          <div class="fillbar"><div id="selected-bar" style="width: 100%; "><div id="rendered-bar" style="width: 1.3225088385491686%; ">&nbsp;</div></div></div>-->
+            <button class="btn primary run" id="acapulco-run" onclick="getData();">Run</button>
+            <ul class="render-info">
+              <li class="status" id="get-data">Retrieving data...</a>
+              <li class="status" id="draw-data">Drawing graph...</a>
+              <li class="status" id="done-data">Done.</a>
+              <li class="status" id="zero-data">Add some events!</a>
+              </ul>
+        </small>
+      </div>
+      <div class="third" id="controls">
+        <h3>Controls</h3>
+        <p class="ctrl-grid">
+        <button class="btn primary ctrl" id="show-clusters">Show Density</button>
+        <button class="btn primary ctrl" id="show-ticks">Show Ticks</button>
+        <button class="btn primary ctrl" id="show-brush">Show Brush Area</button>
+        <br>
+        <button class="btn primary ctrl" id="hide-clusters">Hide Density</button>
+        <button class="btn primary ctrl" id="hide-ticks">Hide Ticks</button>
+        <button class="btn primary ctrl" id="hide-brush">Hide Brush Area</button>
+        </p>
+      </div>
+    </div>
+    <div class="row1" id="chart">
+        <svg width="940" height="600">
+        <g transform="translate(10,30)"><g class="background"></g>
+        <g class="dimension" transform="translate(94)"><g class="axis">
+        <path class="domain" d="M-6,0H0V460H-6"></path><text text-anchor="middle" y="-9"></text></g><g class="brush" style="pointer-events: all; "><rect class="background" style="visibility: hidden; cursor: crosshair; " y="0" height="460" x="-8" width="16"></rect><rect class="extent" style="cursor: move; " y="0" height="0" x="-8" width="16"></rect><g class="resize n" style="cursor: ns-resize; display: none; " transform="translate(0,0)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g><g class="resize s" style="cursor: ns-resize; display: none; " transform="translate(0,0)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g></g></g>
+        
+        <g class="dimension" transform="translate(282)"><g class="axis">
+        <path class="domain" d="M-6,0H0V460H-6"></path><text text-anchor="middle" y="-9"></text></g><g class="brush" style="pointer-events: all; "><rect class="background" style="visibility: hidden; cursor: crosshair; " y="0" height="460" x="-8" width="16"></rect><g class="resize n" style="cursor: ns-resize; " transform="translate(0,104)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g><g class="resize s" style="cursor: ns-resize; " transform="translate(0,266)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g></g></g>
+
+        <g class="dimension" transform="translate(470)"><g class="axis"><path class="domain" d="M-6,0H0V460H-6"></path><text text-anchor="middle" y="-9"></text></g><g class="brush" style="pointer-events: all; "><rect class="background" style="visibility: hidden; cursor: crosshair; " y="0" height="460" x="-8" width="16"></rect><rect class="extent" style="cursor: move; " y="0" height="0" x="-8" width="16"></rect><g class="resize n" style="cursor: ns-resize; display: none; " transform="translate(0,0)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g><g class="resize s" style="cursor: ns-resize; display: none; " transform="translate(0,0)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g></g></g>
+
+        <g class="dimension" transform="translate(658)"><g class="axis"><path class="domain" d="M-6,0H0V460H-6"></path><text text-anchor="middle" y="-9"></text></g><g class="brush" style="pointer-events: all; "><rect class="background" style="visibility: hidden; cursor: crosshair; " y="0" height="460" x="-8" width="16"></rect><g class="resize n" style="cursor: ns-resize; " transform="translate(0,196)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g><g class="resize s" style="cursor: ns-resize; " transform="translate(0,210)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g></g></g>
+
+        <g class="dimension" transform="translate(846)"><g class="axis"><path class="domain" d="M-6,0H0V460H-6"></path><text text-anchor="middle" y="-9"></text></g><g class="brush" style="pointer-events: all; "><rect class="background" style="visibility: hidden; cursor: crosshair; " y="0" height="460" x="-8" width="16"></rect><rect class="extent" style="cursor: move; " y="0" height="0" x="-8" width="16"></rect><g class="resize n" style="cursor: ns-resize; display: none; " transform="translate(0,0)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g><g class="resize s" style="cursor: ns-resize; display: none; " transform="translate(0,0)"><rect y="-3" width="16" height="6" style="visibility: hidden; " x="-8"></rect></g></g></g></g>
+      </svg>
+      </div> <!-- close div row1 -->
+      </section>
+      
+      <footer>
+        <div id="foot">
+        <p>&copy; The Honeynet Project 2012</p>
+        </div>
+      </footer>
+
+    </div> <!-- /container -->
+    <script type="text/javascript" src="pc.js"></script>
+  </body>
+</html>

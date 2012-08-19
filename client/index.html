@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Acapulco for The Honeynet Project</title>
+    <meta name="description" content="">
+    <meta name="author" content="Hugo Gascon">
+
+
+    <link href="resources/bootstrap.css" rel="stylesheet">
+    <link href="resources/prettify.css" type="text/css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/graph.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/legend.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/detail.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/extensions.css">
+    <link type="text/css" rel="stylesheet" href="resources/acapulco/acapulco.min.css">
+    <style type="text/css">
+      body {
+      }
+      
+      section {
+        padding-top: 60px;
+      }
+      
+      .code {
+        font-family: Monaco, 'Andale Mono', 'Courier New', monospace;
+      }
+
+      .page-header{
+        margin-left: 10px;
+      }
+      .row{
+        margin-left: 20px;
+        margin-right: 100px;
+        margin-bottom: 10px;
+      }
+
+      .logo {
+        float: left;
+        width: 20%;
+      }
+
+      .about{
+        float: right;
+        width: 80%;
+
+      }
+
+      pre {
+        overflow-x: auto;
+      }
+      
+      code {
+        font-size: 12px!important;
+        background-color: ghostWhite!important;
+        color: #444!important;
+        padding: 0 .2em!important;
+        border: 1px solid #DEDEDE!important;
+      }
+      
+      
+      #acapulco-container.active { 
+        height: 1000px;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+      }
+      
+      #acapulco-chart {
+        position: relative;
+        left: 40px;
+      }
+
+      .span12{
+        width: 100%;
+      }
+
+      #foot{
+        width: 40%;
+        float: center;
+        margin-left: 20px;
+      }
+
+      .prettyprint{
+        display: none;
+      } 
+      
+      .secondary-nav ul.dropdown-menu  {
+        padding: 10px;
+      }
+      
+      .secondary-nav .dropdown-menu li {
+        width: 100%;
+      }
+      
+      .secondary-nav .dropdown-menu li input {
+        width: 200px;
+        margin: 1px auto;
+        margin-bottom: 8px;
+      }
+
+      #svg {
+        font: 10px sans-serif;
+      }
+
+      .background path {
+        fill: none;
+        stroke: #ccc;
+        stroke-opacity: .4;
+        shape-rendering: crispEdges;
+      }
+
+      .foreground path {
+        fill: none;
+        stroke: steelblue;
+        stroke-opacity: .7;
+      }
+
+      .brush .extent {
+        fill-opacity: .3;
+        stroke: #fff;
+        shape-rendering: crispEdges;
+      }
+
+      .axis line, .axis path {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+      .axis text {
+        text-shadow: 0 1px 0 #fff;
+        cursor: move;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container-fluid">
+          <a class="brand" href="index.html">Acapulco by The Honeynet Project</a>
+       <ul class="nav">
+            <li class="active"><a href="#">Description</a></li>
+            <li><a href="pc.html">Graph Display</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+      <section id="acapulco">
+       <div class="page-header">
+          <h1>
+            <small>Automatic Construction of Clustered Parallel Coordinates Graph</small>
+          </h1>
+       </div>
+       <div class="row">
+          <div class="logo">
+            <img src="images/icon_acapulco.png" height="136" width="136"/>
+          </div>
+          <div class="about">
+            <h3>Description</h3>
+            <p>
+              <p>Acapulco a is tool for building clustered parallel coordinates graphs from security data obtained through the hpfeeds protocol. It was initially developed as part of the <a href="http://www.honeynet.org/gsoc/slot2">Google Summer of Code 2012</a> for The Honeynet Project. Acapulco uses Splunk as data managment backend and the powerful <a href="http://mbostock.github.com/d3/">d3</a> visualization library.
+            </p>
+            <p>
+              <strong>Access the <a href="pc.html">graph display tab</a>, log into the Splunk server and hit the run button to build the graph from indexed data.</strong>
+              <!-- <button class="btn primary run" id="run">Run</button> -->
+            </p>
+          </div>
+      </div> <!-- close div row -->
+      </section>
+      
+      <footer>
+        <div id="foot">
+        <p>&copy; The Honeynet Project 2012</p>
+        </div>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
