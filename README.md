@@ -43,7 +43,7 @@ In order to run all the elements, you'll need to install:
 
 ### The Splunk App
 
-The Acapulco Splunk app is based on the HPfeeds4Splunk add-on by Frank Guenichot. It can be configured to retrieve events from different hpfeeds channels, index the events and save them in a log directory. Once that cluster runner has been call on these logs files, the app will also index the meta-events and their clustered version in a two new indexes that will be available for the visualization client.
+The Acapulco Splunk app is based on the HPfeeds4Splunk add-on by Frank Guenichot. It can be configured to retrieve events from different hpfeeds channels, index the events and save them in a log directory. Once that cluster runner has been call on these logs files, the app will also index the meta-events and their clustered version in two new indexes that will be available for the visualization client.
 
 ### The Cluster Runner
 
