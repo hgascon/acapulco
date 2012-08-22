@@ -49,7 +49,7 @@ The Acapulco Splunk app is based on the HPfeeds4Splunk add-on by Frank Guenichot
 
 The cluster runner script can be run periodically from the command line:
 
-	Usage: runner.py [options] <log dir
+	Usage: runner.py [options] <log dir>
 
 	Options:  
 	-h, --help            show this help message and exit  
@@ -57,7 +57,7 @@ The cluster runner script can be run periodically from the command line:
 	                     Output type: csv or json (default csv)  
 	-d OUTPUT_DIR, --outdir=OUTPUT_DIR  
 	                     Output directory (default log dir)  
-	Usage: runner.py [options] <log dir  
+	Usage: runner.py [options] <log dir> 
 
 Once you run it, you can expect and output similar to this:
 
