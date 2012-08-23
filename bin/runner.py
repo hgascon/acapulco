@@ -1,21 +1,32 @@
 #!/usr/bin/python
 """
-The Honeynet Prokect
-Acapulco (Attack Community grAPh COnstruction)
-Runner
-Hugo Gascon (hgascon@gmail.com)
+The Honeynet Project
+Acapulco (Attack Community grAPh COnstruction) / Runner
+Copyright (C) 2012  Hugo Gascon <hgascon@gmail.com>
 
-This module is in charge of creating meta-events from the different
-log files saved from hpfeeds channels in the log directory. These meta-events
-are saved in a new log file that is indexed by Splunk and will be able to
-be requested later by a remote client. Once meta-events are created, a
-clustering algorithm (DBSCAN or k-means) runs over the different features and
-their values are replaced by the label of the assigned cluster.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-Dependencies: numpy, scipy and scikit-learn
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+############################################################################
+# This module is in charge of creating meta-events from the different
+# log files saved from hpfeeds channels in the log directory. These meta-events
+# are saved in a new log file that is indexed by Splunk and will be able to
+# be requested later by a remote client. Once meta-events are created, a
+# clustering algorithm (DBSCAN or k-means) runs over the different features and
+# their values are replaced by the label of the assigned cluster.
+
+# Dependencies: numpy, scipy and scikit-learn
+############################################################################
 
 __author__ = 'hgascon'
 
