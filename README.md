@@ -4,7 +4,7 @@ The Honeynet Project Acapulco app bundles a Splunk application that can be deplo
 
 ## License
 
-The Acapulco Project software is licensed under the ___ license.
+The Acapulco Project software is licensed under the GNU GPL license.
 
 ## Installation
 
