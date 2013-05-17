@@ -1,6 +1,6 @@
 # Acapulco (Attack Community grAPh COnstruction)
 
-The Honeynet Project Acapulco app bundles a Splunk application that can be deployed on a central server to automatically generate meta-events from several hpfeeds channels. This events are clustered using DBSCAN or K-means algorithms and displayed at a external client using parallel coordinates graphs based on the D3.js visualization library.
+The Honeynet Project Acapulco app bundles a Splunk application that can be deployed on a central server to automatically generate meta-events from several hpfeeds channels. This events are clustered using DBSCAN or K-means algorithms and displayed at an external client using parallel coordinates graphs based on the D3.js visualization library.
 
 ## License
 
