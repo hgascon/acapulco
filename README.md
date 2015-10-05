@@ -94,6 +94,6 @@ This first release has been supported by the Google Summer of Code 2012 program 
 
 ## Contact
 
-You can reach the main developer at hgascon@gmail.com.
+You can reach the main developer at hgascon@mail.de.
 
 
